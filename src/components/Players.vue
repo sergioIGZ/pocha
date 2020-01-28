@@ -3,9 +3,8 @@
     <ul class="players-list">
       <li v-for="(player, index) in players" :key="index">
         <span>{{player}}</span>
-        <v-btn class="mx-2" fab dark small color="primary">
-          <v-icon dark>mdi-minus</v-icon>
-          <span class="icon-play">uasdasd</span>
+        <v-btn class="mx-2" fab dark small color="secondary">
+          <span class="icon-bin2"/>
         </v-btn>
       </li>
     </ul>
@@ -42,10 +41,16 @@ export default {
 .players-list {
   list-style: none;
   padding: 0;
+  border: 1px solid #dddddd
 }
 .players-list li {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   padding: 8px;
+  border-bottom: 1px solid #dddddd;
 }
+  .players-list :last-child {
+    border-bottom: none;
+  }
 </style>
