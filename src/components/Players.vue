@@ -1,16 +1,16 @@
 <template>
   <div>
-    <ul class="players-list">
+    <ul v-show="players.length" class="players-list">
       <li v-for="(player, index) in players" :key="index">
         <span>{{player}}</span>
-        <v-btn class="mx-2" fab dark small color="secondary">
+        <v-btn class="mx-2" @click="deletePlayer(player)" fab dark small color="secondary">
           <span class="icon-bin2"/>
         </v-btn>
       </li>
     </ul>
     <div>
       <v-text-field outlined label="Nombre" placeholder="Ej: Jose" v-model="playerName"/>
-      <v-btn icon @click="addPlayer">Añadir jugador</v-btn>
+      <v-btn :disabled="!playerName" icon @click="addPlayer">Añadir jugador</v-btn>
     </div>
   </div>
 </template>
@@ -31,6 +31,10 @@ export default {
   methods: {
     addPlayer() {
       this.$store.commit('addPlayer', this.playerName)
+      this.playerName = ''
+    },
+    deletePlayer(playerName) {
+      this.$store.commit('deletePlayer', playerName)
     }
   }
 }

@@ -20,6 +20,9 @@ const store = new Vuex.Store({
   mutations: {
     addPlayer(state, playerName) {
       state.players.push(playerName)
+    },
+    deletePlayer(state, playerName) {
+      state.players = state.players.filter(player => player !== playerName)
     }
   },
   plugins: [vuexLocal.plugin]
