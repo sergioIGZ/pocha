@@ -9,6 +9,12 @@ import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
 Vue.use(Vuetify)
 
+// const vuetify = new Vuetify({
+//   icons: {
+//     iconfont: 'mdiSvg' // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4'
+//   }
+// })
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
@@ -18,4 +24,5 @@ new Vue({
   store,
   components: { App },
   template: '<App/>'
+  // vuetify
 })
