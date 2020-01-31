@@ -1,10 +1,10 @@
 <template>
   <div class="points-action">
-    <v-btn class="mx-2" @click="$emit('change', points - 1)" fab small color="primary">
+    <v-btn class="mx-2 smaller" @click="$emit('change', points - 1)" fab small color="primary">
       -
     </v-btn>
     <v-text-field class="bet" type="number" @change="$emit('change', Number($event))" v-model="points" />
-    <v-btn class="mx-2" @click="$emit('change', points + 1)" fab small color="primary">
+    <v-btn class="mx-2 smaller" @click="$emit('change', points + 1)" fab small color="primary">
       +
     </v-btn>
   </div>
@@ -33,5 +33,9 @@ export default {
   }
   .bet{
     width: 30px;
+  }
+  .smaller{
+    width: 30px;
+    height: 30px;
   }
 </style>

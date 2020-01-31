@@ -4,6 +4,7 @@
       <span>{{player.name}}</span>
       <points-counter @change="setPlayerBet(player.name, $event)" :points="player.bet"/>
       <points-counter @change="setPlayerPoints(player.name, $event)" :points="player.points"/>
+      <span>{{player.totalPoints}}</span>
     </li>
   </ul>
 </template>
@@ -25,11 +26,9 @@ export default {
       this.$emit('on-delete-player', playerName)
     },
     setPlayerBet(name, bet) {
-      console.log('bet', name, bet)
       this.$emit('set-player-bet', { name, bet })
     },
     setPlayerPoints(name, points) {
-      console.log('points', name, points)
       this.$emit('set-player-points', { name, points })
     }
   }

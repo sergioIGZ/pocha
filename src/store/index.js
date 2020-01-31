@@ -30,7 +30,7 @@ const store = new Vuex.Store({
       state.players = state.players.filter(player => player !== playerName)
     },
     choosePlayer(state, playerName) {
-      state.currentGame.players.push({ name: playerName, bet: 0, points: 0 })
+      state.currentGame.players.push({ name: playerName, bet: 0, points: 0, totalPoints: 0 })
     },
     deleteGamePlayer(state, playerName) {
       state.currentGame.players = state.currentGame.players.filter(player => player.name !== playerName)
@@ -42,6 +42,16 @@ const store = new Vuex.Store({
       state.currentGame.players = state.currentGame.players.map(player => player.name === name ? {...player, points} : player)
     },
     nextRound(state) {
+      state.currentGame.players = state.currentGame.players.map(player => {
+        const {bet, points, totalPoints} = player
+        let _totalPoints = 0
+        if (bet !== points) {
+          _totalPoints = (Math.abs(bet - points)) * -5
+        } else {
+          _totalPoints = points * 5 + 10
+        }
+        return {...player, points: 0, bet: 0, totalPoints: _totalPoints + totalPoints}
+      })
       state.currentGame.round = state.currentGame.round + 1
     }
   },
