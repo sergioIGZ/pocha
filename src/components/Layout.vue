@@ -28,8 +28,8 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>Application</v-toolbar-title>
     </v-toolbar>
-    <v-content>
-      <img src="../assets/logo.png">
+    <v-content class="container">
+      Pocha!
       <router-view/>
     </v-content>
     <v-footer color="indigo" app>
@@ -48,3 +48,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .container {
+    padding: 0 !important;
+  }
+</style>

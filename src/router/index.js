@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Home from '@/components/Home'
-import Players from '@/components/Players'
+import Home from '@/pages/Home'
+import Players from '@/pages/Players'
+import Game from '@/pages/Game'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     { path: '/', name: 'Home', component: Home },
-    { path: '/hello', name: 'HelloWorld', component: HelloWorld },
-    { path: '/players', name: 'Players', component: Players }
+    { path: '/players', name: 'Players', component: Players },
+    { path: '/game', name: 'Game', component: Game }
   ]
 })

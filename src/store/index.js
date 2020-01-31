@@ -12,17 +12,37 @@ const store = new Vuex.Store({
   state: {
     players: [],
     currentGame: {
-      players: []
+      players: [],
+      round: 1
     }
   },
   actions: {},
-  getters: {},
+  getters: {
+    playersNotInGame(state) {
+      return state.players.filter(playerName => !state.currentGame.players.map(player => player.name).includes(playerName))
+    }
+  },
   mutations: {
     addPlayer(state, playerName) {
       state.players.push(playerName)
     },
     deletePlayer(state, playerName) {
       state.players = state.players.filter(player => player !== playerName)
+    },
+    choosePlayer(state, playerName) {
+      state.currentGame.players.push({ name: playerName, bet: 0, points: 0 })
+    },
+    deleteGamePlayer(state, playerName) {
+      state.currentGame.players = state.currentGame.players.filter(player => player.name !== playerName)
+    },
+    setPlayerBet(state, { name, bet }) {
+      state.currentGame.players = state.currentGame.players.map(player => player.name === name ? {...player, bet} : player)
+    },
+    setPlayerPoints(state, { name, points }) {
+      state.currentGame.players = state.currentGame.players.map(player => player.name === name ? {...player, points} : player)
+    },
+    nextRound(state) {
+      state.currentGame.round = state.currentGame.round + 1
     }
   },
   plugins: [vuexLocal.plugin]

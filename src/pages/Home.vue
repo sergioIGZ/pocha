@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-btn>Nueva partida</v-btn>
+    <v-btn @click="$router.push('/game')">Nueva partida</v-btn>
     <v-btn @click="$router.push('/players')">Jugadores</v-btn>
-    <v-btn>Continuar partida</v-btn>
+    <v-btn @click="$router.push('/game')">Continuar partida</v-btn>
     <v-btn>Partidas anteriores</v-btn>
     <v-btn>About</v-btn>
   </div>
