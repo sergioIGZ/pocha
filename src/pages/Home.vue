@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn @click="$router.push('/game')">Nueva partida</v-btn>
+    <v-btn @click="setNewGame">Nueva partida</v-btn>
     <v-btn @click="$router.push('/players')">Jugadores</v-btn>
     <v-btn @click="$router.push('/game')">Continuar partida</v-btn>
     <v-btn>Partidas anteriores</v-btn>
@@ -14,6 +14,12 @@ export default {
   data() {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    setNewGame() {
+      this.$store.commit('newGame')
+      this.$router.push('/game')
     }
   }
 }

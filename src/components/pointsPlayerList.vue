@@ -4,7 +4,7 @@
       <span>{{player.name}}</span>
       <points-counter @change="setPlayerBet(player.name, $event)" :points="player.bet"/>
       <points-counter @change="setPlayerPoints(player.name, $event)" :points="player.points"/>
-      <span>{{player.totalPoints}}</span>
+      <span :class="{isRed: !player.hasWon}">{{player.totalPoints}}</span>
     </li>
   </ul>
 </template>
@@ -50,5 +50,8 @@ export default {
   }
   .players-list :last-child {
     border-bottom: none;
+  }
+  .isRed {
+    color: #EE8888
   }
 </style>
