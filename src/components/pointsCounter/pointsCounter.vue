@@ -1,12 +1,12 @@
 <template>
   <div class="points-action">
-    <v-btn class="mx-2 smaller" @click="$emit('change', points - 1)" fab small color="primary">
+    <button @click="$emit('change', points - 1)">
       -
-    </v-btn>
-    <v-text-field class="bet" type="number" @change="$emit('change', Number($event))" v-model="points" />
-    <v-btn class="mx-2 smaller" @click="$emit('change', points + 1)" fab small color="primary">
+    </button>
+    <input class="bet" type="number" @change="$emit('change', Number($event))" v-model="points" />
+    <button @click="$emit('change', points + 1)">
       +
-    </v-btn>
+    </button>
   </div>
 </template>
 
