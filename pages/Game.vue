@@ -130,7 +130,9 @@ export default {
         0
       )
       if (playerBets === playerPoints) {
-        return alert('las apuestas son igual a las rondas')
+        return alert(
+          'Las apuestas son igual a los aciertos\nAlguien tiene ke pringar'
+        )
       }
       this.$store.commit('nextRound')
     }

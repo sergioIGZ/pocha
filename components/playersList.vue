@@ -6,16 +6,18 @@
       @click="onUserClick(player)"
     >
       <span>{{ player }}</span>
-      <button v-if="showDelete" @click="deletePlayer(player)">
-        <span class="icon-bin2" />
-      </button>
+      <icon-button v-if="showDelete" @click="deletePlayer(player)" color="red">
+        <span class="icon-cross" />
+      </icon-button>
     </li>
   </ul>
 </template>
 
 <script>
+import IconButton from './iconButton/iconButton'
 export default {
   name: 'PlayersList',
+  components: { IconButton },
   props: {
     players: { type: Array, required: true },
     showDelete: { type: Boolean, required: false, default: true }

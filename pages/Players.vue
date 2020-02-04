@@ -3,7 +3,11 @@
     <players-list @on-delete-player="deletePlayer" :players="players" />
     <div>
       <label>Nombre</label>
-      <input v-model="playerName" placeholder="Ej: Jose" />
+      <input
+        @keypress.enter="addPlayer"
+        v-model="playerName"
+        placeholder="Ej: Jose"
+      />
       <button :disabled="!playerName" @click="addPlayer">
         Añadir jugador
       </button>

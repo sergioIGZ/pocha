@@ -3,8 +3,8 @@
     <button @click="setNewGame">Nueva partida</button>
     <button @click="$router.push('/players')">Jugadores</button>
     <button @click="$router.push('/game')">Continuar partida</button>
-    <button>Partidas anteriores</button>
-    <button>About</button>
+    <!--    <button>Partidas anteriores</button>-->
+    <!--    <button>About</button>-->
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
   methods: {
     setNewGame() {
       const result = window.prompt(
-        'Estás seguro de que quieres empezar una nueva partida?. Se perderán los datos de la última'
+        '¿Estás seguro de que quieres empezar una nueva partida?\n Se perderán los datos de la última'
       )
       if (result !== null) {
         this.$store.commit('newGame')
