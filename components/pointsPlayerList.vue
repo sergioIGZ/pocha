@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import PointsCounter from './pointsCounter/pointsCounter'
+import PointsCounter from './pointsCounter'
 export default {
   name: 'PlayersList',
   components: { PointsCounter },
@@ -60,8 +60,5 @@ export default {
 }
 .players-list :last-child {
   border-bottom: none;
-}
-.isRed {
-  color: #ee8888;
 }
 </style>

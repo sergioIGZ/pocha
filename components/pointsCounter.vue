@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import IconButton from '../iconButton/iconButton'
+import IconButton from './iconButton'
 export default {
   name: 'PointsCounter',
   components: { IconButton },
@@ -43,5 +43,6 @@ export default {
 }
 input {
   text-align: center;
+  padding: 0.25rem 0;
 }
 </style>
