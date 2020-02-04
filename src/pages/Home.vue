@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-btn @click="setNewGame">Nueva partida</v-btn>
-    <v-btn @click="$router.push('/players')">Jugadores</v-btn>
-    <v-btn @click="$router.push('/game')">Continuar partida</v-btn>
-    <v-btn>Partidas anteriores</v-btn>
-    <v-btn>About</v-btn>
+    <button @click="setNewGame">Nueva partida</button>
+    <button @click="$router.push('/players')">Jugadores</button>
+    <button @click="$router.push('/game')">Continuar partida</button>
+    <button>Partidas anteriores</button>
+    <button>About</button>
   </div>
 </template>
 
@@ -41,5 +41,9 @@ li {
 }
 a {
   color: #42b983;
+}
+button{
+  padding: 8px;
+  border: 1px solid #DDD
 }
 </style>
