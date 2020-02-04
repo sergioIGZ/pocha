@@ -18,8 +18,13 @@ export default {
   },
   methods: {
     setNewGame() {
-      this.$store.commit('newGame')
-      this.$router.push('/game')
+      const result = window.prompt(
+        'Estás seguro de que quieres empezar una nueva partida?. Se perderán los datos de la última'
+      )
+      if (result !== null) {
+        this.$store.commit('newGame')
+        this.$router.push('/game')
+      }
     }
   }
 }
