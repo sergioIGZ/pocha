@@ -2,13 +2,18 @@
   <div>
     <players-list @on-delete-player="deletePlayer" :players="players" />
     <div>
-      <label>Nombre</label>
+      <label for="playerName">Nombre</label>
       <input
+        id="playerName"
         @keypress.enter="addPlayer"
         v-model="playerName"
         placeholder="Ej: Jose"
       />
-      <button :disabled="!playerName" @click="addPlayer">
+      <button
+        @click="addPlayer"
+        :class="!playerName && `opacity-50`"
+        :disabled="!playerName"
+      >
         Añadir jugador
       </button>
     </div>
@@ -35,6 +40,9 @@ export default {
   },
   methods: {
     addPlayer() {
+      if (this.players.includes(this.playerName)) {
+        return alert(`Ke ${this.playerName} ya existe MELOOOON!`)
+      }
       this.$store.commit('addPlayer', this.playerName)
       this.playerName = ''
     },
