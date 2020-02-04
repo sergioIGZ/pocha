@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     Pocha!
-    <router-view />
+    <nuxt-child />
   </div>
 </template>
 
@@ -22,8 +22,11 @@ export default {
   color: #2c3e50;
 }
 button {
-  padding: 8px;
-  border: 1px solid #dddddd;
   margin: 4px;
+  @apply font-bold py-2 px-4 rounded;
+  @apply bg-green-500 text-white;
+}
+button:hover {
+  @apply bg-green-700;
 }
 </style>

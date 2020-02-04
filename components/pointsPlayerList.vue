@@ -36,10 +36,10 @@ export default {
       this.$emit('on-delete-player', playerName)
     },
     setPlayerBet(name, bet) {
-      this.$emit('set-player-bet', { name, bet })
+      this.$emit('set-player-bet', { name, bet: bet < 0 ? 0 : bet })
     },
     setPlayerPoints(name, points) {
-      this.$emit('set-player-points', { name, points })
+      this.$emit('set-player-points', { name, points: points < 0 ? 0 : points })
     }
   }
 }
