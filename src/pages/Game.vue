@@ -5,8 +5,8 @@
       <span>Ronda: {{$store.state.currentGame.round}}</span>
       <span>Cartas: {{this.cards}}</span>
     </div>
-    <v-btn v-if="!isGameStarted" @click="startGame">Empezar</v-btn>
-    <v-btn v-if="isGameStarted" @click="doNextRound">Siguiente Ronda ></v-btn>
+    <button v-if="!isGameStarted" @click="startGame">Empezar</button>
+    <button v-if="isGameStarted" @click="doNextRound">Siguiente Ronda ></button>
     <div class="middle">
       <players-list v-if="!isGameStarted" class="marked" :players="gamePlayerNames" :show-delete="!isGameStarted" @on-delete-player="deleteGamePlayer"/>
       <points-player-list
@@ -21,8 +21,8 @@
       :show-delete="false"
       @on-player-click="choosePlayer" />
     <div class="bottom">
-      <v-btn v-if="!isGameStarted" @click="showSelectPlayers = !showSelectPlayers">+ Jugador</v-btn>
-      <v-btn @click="$router.push('/')">Salir</v-btn>
+      <button v-if="!isGameStarted" @click="showSelectPlayers = !showSelectPlayers">+ Jugador</button>
+      <button @click="$router.push('/')">Salir</button>
     </div>
   </div>
 </template>

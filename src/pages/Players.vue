@@ -2,11 +2,12 @@
   <div>
     <players-list @on-delete-player="deletePlayer" :players="players"/>
     <div>
-      <v-text-field outlined label="Nombre" placeholder="Ej: Jose" v-model="playerName"/>
-      <v-btn outlined :disabled="!playerName" icon @click="addPlayer">Añadir jugador</v-btn>
+      <label>Nombre</label>
+      <input placeholder="Ej: Jose" v-model="playerName"/>
+      <button :disabled="!playerName" icon @click="addPlayer">Añadir jugador</button>
     </div>
     <div class="bottom">
-      <v-btn @click="$router.push('/')">Salir</v-btn>
+      <button @click="$router.push('/')">Salir</button>
     </div>
   </div>
 </template>

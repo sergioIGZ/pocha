@@ -2,9 +2,9 @@
   <ul v-show="players.length" class="players-list">
     <li v-for="(player, index) in players" :key="index" @click="onUserClick(player)">
       <span>{{player}}</span>
-      <v-btn v-if="showDelete" class="mx-2" @click="deletePlayer(player)" fab small color="secondary">
+      <button v-if="showDelete" @click="deletePlayer(player)">
         <span class="icon-bin2"/>
-      </v-btn>
+      </button>
     </li>
   </ul>
 </template>
