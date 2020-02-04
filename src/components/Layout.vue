@@ -1,8 +1,8 @@
 <template>
-  <v-app id="inspire">
-      Pocha!
-      <router-view/>
-  </v-app>
+  <div>
+    Pocha!
+    <router-view/>
+  </div>
 </template>
 
 <script>
