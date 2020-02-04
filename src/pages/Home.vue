@@ -42,8 +42,4 @@ li {
 a {
   color: #42b983;
 }
-button{
-  padding: 8px;
-  border: 1px solid #DDD
-}
 </style>
