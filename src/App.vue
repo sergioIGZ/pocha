@@ -25,6 +25,7 @@ export default {
   }
   button{
     padding: 8px;
-    border: 1px solid #DDD
+    border: 1px solid #DDDDDD;
+    margin: 4px
   }
 </style>
