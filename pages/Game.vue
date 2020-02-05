@@ -6,7 +6,9 @@
       <span>Cartas: {{ cards }}</span>
     </div>
     <button v-if="!isGameStarted" @click="startGame">Empezar</button>
-    <button v-if="isGameStarted" @click="doNextRound">Siguiente Ronda ></button>
+    <button v-if="isGameStarted" @click="doNextRound">
+      Siguiente Ronda >
+    </button>
     <div class="middle">
       <players-list
         v-if="!isGameStarted"
@@ -24,7 +26,7 @@
       />
     </div>
     <players-list
-      v-show="showSelectPlayers"
+      v-if="showSelectPlayers"
       :players="$store.getters.playersNotInGame"
       :show-delete="false"
       @on-player-click="choosePlayer"
@@ -50,7 +52,6 @@ export default {
   data() {
     return {
       cards: 1,
-      isGameStarted: false,
       showSelectPlayers: false
     }
   },
@@ -61,11 +62,11 @@ export default {
     gamePlayers() {
       return this.$store.state.currentGame.players
     },
-    totalPlayers() {
-      return this.$store.state.players
-    },
     round() {
       return this.$store.state.currentGame.round
+    },
+    isGameStarted() {
+      return this.$store.state.currentGame.round !== 0
     }
   },
   methods: {
@@ -74,7 +75,6 @@ export default {
         alert('No hay jugadores suficientes!')
       } else {
         this.$store.commit('startGame')
-        this.isGameStarted = true
       }
     },
     deleteGamePlayer(playerName) {
@@ -129,9 +129,20 @@ export default {
         (acc, next) => acc + next.points,
         0
       )
+      if (playerBets === cards) {
+        return alert(
+          'Las apuestas son igual a las cartas\nAlguien tiene ke pringar'
+        )
+      }
       if (playerBets === playerPoints) {
+        // TODO: No se si hay ke kitar esto
         return alert(
           'Las apuestas son igual a los aciertos\nAlguien tiene ke pringar'
+        )
+      }
+      if (playerPoints !== cards) {
+        return alert(
+          'Las juagadas ganadas tienen que ser igual al numero de cartas repartidas\nTe has colao bacalao'
         )
       }
       this.$store.commit('nextRound')

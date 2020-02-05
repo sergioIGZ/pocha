@@ -1,7 +1,7 @@
 <template>
   <div>
     <players-list @on-delete-player="deletePlayer" :players="players" />
-    <div>
+    <div class="px-2">
       <label for="playerName">Nombre</label>
       <input
         id="playerName"
@@ -17,7 +17,7 @@
         Añadir jugador
       </button>
     </div>
-    <div class="bottom">
+    <div class="bottom py-4">
       <button @click="$router.push('/')">Salir</button>
     </div>
   </div>
@@ -59,9 +59,8 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  position: fixed;
-  bottom: 36px;
-  background-color: white;
+  position: absolute;
+  bottom: 0;
   width: 100%;
 }
 </style>

@@ -28,7 +28,7 @@ export const mutations = {
   },
   newGame(state) {
     state.currentGame.players = []
-    state.currentGame.round = 1
+    state.currentGame.round = 0
   },
   startGame(state) {
     state.currentGame.round = 1
@@ -77,5 +77,3 @@ export const mutations = {
     state.currentGame.round = state.currentGame.round + 1
   }
 }
-// plugins: [vuexLocal.plugin]
-// export default store

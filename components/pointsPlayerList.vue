@@ -5,16 +5,22 @@
       :key="index"
       @click="onUserClick(player)"
     >
-      <span>{{ player.name }}</span>
-      <points-counter
-        @change="setPlayerBet(player.name, $event)"
-        :points="player.bet"
-      />
-      <points-counter
-        @change="setPlayerPoints(player.name, $event)"
-        :points="player.points"
-      />
-      <span :class="{ isRed: !player.hasWon }">{{ player.totalPoints }}</span>
+      <div class="left text-gray-700">
+        <span>{{ player.name }}</span>
+      </div>
+      <div class="middle">
+        <points-counter
+          @change="setPlayerBet(player.name, $event)"
+          :points="player.bet"
+        />
+        <points-counter
+          @change="setPlayerPoints(player.name, $event)"
+          :points="player.points"
+        />
+      </div>
+      <div class="right">
+        <span :class="{ isRed: !player.hasWon }">{{ player.totalPoints }}</span>
+      </div>
     </li>
   </ul>
 </template>
@@ -63,5 +69,18 @@ export default {
 }
 .isRed {
   color: #ee8888;
+}
+.left {
+  width: 25%;
+  text-align: left;
+}
+.middle {
+  width: 65%;
+  display: flex;
+  align-items: center;
+}
+.right {
+  width: 10%;
+  text-align: right;
 }
 </style>
