@@ -77,12 +77,12 @@ export default {
     },
     manifest: {
       name: 'contador-pocha',
-      short_name: 'contador-pocha',
+      short_name: 'pocha',
       description: 'Un contador de pocha, juego de cartas from Spain',
       start_url: '/?standalone=true',
       display: 'standalone',
       lang: 'es',
-      background_color: '#999999',
+      background_color: '#EEEEEE',
       theme_color: '#99dd99'
     }
   }
