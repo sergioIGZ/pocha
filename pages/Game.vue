@@ -6,7 +6,9 @@
       <span>Cartas: {{ cards }}</span>
     </div>
     <button v-if="!isGameStarted" @click="startGame">Empezar</button>
-    <button v-if="isGameStarted" @click="doNextRound">Siguiente Ronda ></button>
+    <button v-if="isGameStarted" @click="doNextRound">
+      Siguiente Ronda >
+    </button>
     <div class="middle">
       <players-list
         v-if="!isGameStarted"
@@ -50,7 +52,6 @@ export default {
   data() {
     return {
       cards: 1,
-      isGameStarted: false,
       showSelectPlayers: false
     }
   },
@@ -63,6 +64,9 @@ export default {
     },
     round() {
       return this.$store.state.currentGame.round
+    },
+    isGameStarted() {
+      return this.$store.state.currentGame.round !== 0
     }
   },
   methods: {
@@ -71,7 +75,6 @@ export default {
         alert('No hay jugadores suficientes!')
       } else {
         this.$store.commit('startGame')
-        this.isGameStarted = true
       }
     },
     deleteGamePlayer(playerName) {

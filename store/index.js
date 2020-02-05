@@ -28,7 +28,7 @@ export const mutations = {
   },
   newGame(state) {
     state.currentGame.players = []
-    state.currentGame.round = 1
+    state.currentGame.round = 0
   },
   startGame(state) {
     state.currentGame.round = 1
