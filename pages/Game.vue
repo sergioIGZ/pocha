@@ -20,6 +20,7 @@
       <points-player-list
         v-else
         :players="gamePlayers"
+        :max-points="cards"
         @set-player-bet="setPlayerBet"
         @set-player-points="setPlayerPoints"
         class="marked"

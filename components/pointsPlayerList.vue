@@ -32,6 +32,7 @@ export default {
   components: { PointsCounter },
   props: {
     players: { type: Array, required: true },
+    maxPoints: { type: Number, required: true },
     showDelete: { type: Boolean, required: false, default: true }
   },
   methods: {
@@ -42,10 +43,16 @@ export default {
       this.$emit('on-delete-player', playerName)
     },
     setPlayerBet(name, bet) {
-      this.$emit('set-player-bet', { name, bet: bet < 0 ? 0 : bet })
+      let _bet = bet
+      if (bet < 0) _bet = 0
+      if (bet > this.maxPoints) _bet = this.maxPoints
+      this.$emit('set-player-bet', { name, bet: _bet })
     },
     setPlayerPoints(name, points) {
-      this.$emit('set-player-points', { name, points: points < 0 ? 0 : points })
+      let _points = points
+      if (points < 0) _points = 0
+      if (points > this.maxPoints) _points = this.maxPoints
+      this.$emit('set-player-points', { name, points: _points })
     }
   }
 }
