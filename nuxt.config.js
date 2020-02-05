@@ -39,8 +39,8 @@ export default {
     '@nuxtjs/tailwindcss'
   ],
   tailwindcss: {
-    // configPath: '~/config/tailwind.config.js',
-    // cssPath: '~/assets/css/tailwind.css',
+    configPath: '~/config/tailwind.config.js',
+    cssPath: '~/assets/css/tailwind.css',
     purgeCSSInDev: false
   },
   purgeCss: {
@@ -72,7 +72,8 @@ export default {
   },
   pwa: {
     icon: {
-      iconSrc: '@/assets/baraja.png'
+      iconSrc: '/assets/baraja.png',
+      iconFileName: 'baraja.png'
     },
     manifest: {
       name: 'contador-pocha',
