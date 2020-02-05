@@ -11,7 +11,7 @@
       />
       <button
         @click="addPlayer"
-        :class="!playerName && `opacity-50`"
+        :class="{ 'opacity-50': !playerName }"
         :disabled="!playerName"
       >
         Añadir jugador

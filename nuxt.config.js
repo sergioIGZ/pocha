@@ -38,6 +38,14 @@ export default {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/tailwindcss'
   ],
+  tailwindcss: {
+    // configPath: '~/config/tailwind.config.js',
+    // cssPath: '~/assets/css/tailwind.css',
+    purgeCSSInDev: false
+  },
+  purgeCss: {
+    whiteListPatterns: [/^.bg-.*/]
+  },
   /*
    ** Nuxt.js modules
    */
