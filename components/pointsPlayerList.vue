@@ -61,4 +61,7 @@ export default {
 .players-list :last-child {
   border-bottom: none;
 }
+.isRed {
+  color: #ee8888;
+}
 </style>
