@@ -77,5 +77,3 @@ export const mutations = {
     state.currentGame.round = state.currentGame.round + 1
   }
 }
-// plugins: [vuexLocal.plugin]
-// export default store

@@ -24,7 +24,7 @@
       />
     </div>
     <players-list
-      v-show="showSelectPlayers"
+      v-if="showSelectPlayers"
       :players="$store.getters.playersNotInGame"
       :show-delete="false"
       @on-player-click="choosePlayer"
@@ -60,9 +60,6 @@ export default {
     },
     gamePlayers() {
       return this.$store.state.currentGame.players
-    },
-    totalPlayers() {
-      return this.$store.state.players
     },
     round() {
       return this.$store.state.currentGame.round
@@ -129,9 +126,20 @@ export default {
         (acc, next) => acc + next.points,
         0
       )
+      if (playerBets === cards) {
+        return alert(
+          'Las apuestas son igual a las cartas\nAlguien tiene ke pringar'
+        )
+      }
       if (playerBets === playerPoints) {
+        // TODO: No se si hay ke kitar esto
         return alert(
           'Las apuestas son igual a los aciertos\nAlguien tiene ke pringar'
+        )
+      }
+      if (playerPoints !== cards) {
+        return alert(
+          'Las juagadas ganadas tienen que ser igual al numero de cartas repartidas\nTe has colao bacalao'
         )
       }
       this.$store.commit('nextRound')
