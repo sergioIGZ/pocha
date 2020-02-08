@@ -3,7 +3,7 @@
     <span v-if="!isGameStarted">Nueva partida</span>
     <div v-else>
       <span>Ronda: {{ $store.state.currentGame.round }}</span>
-      <span>Cartas: {{ cards }}</span>
+      <span>Carta/s: {{ cards }}</span>
     </div>
     <button v-if="!isGameStarted" @click="startGame">Empezar</button>
     <button v-if="isGameStarted" @click="doNextRound">
@@ -73,7 +73,12 @@ export default {
   methods: {
     startGame() {
       if (this.gamePlayers.length < 3) {
-        alert('No hay jugadores suficientes!')
+        return this.$store.commit('showAlert', {
+          isVisible: true,
+          type: 'info',
+          title: 'A veeer...',
+          message: 'No hay jugadores suficientes'
+        })
       } else {
         this.$store.commit('startGame')
       }
@@ -131,20 +136,28 @@ export default {
         0
       )
       if (playerBets === cards) {
-        return alert(
-          'Las apuestas son igual a las cartas\nAlguien tiene ke pringar'
-        )
+        return this.$store.commit('showAlert', {
+          isVisible: true,
+          type: 'error',
+          title: 'Ojo!',
+          message:
+            'Las apuestas son igual a las cartas. Alguien tiene ke pringar'
+        })
       }
-      if (playerBets === playerPoints) {
-        // TODO: No se si hay ke kitar esto
-        return alert(
-          'Las apuestas son igual a los aciertos\nAlguien tiene ke pringar'
-        )
-      }
+      // if (playerBets === playerPoints) {
+      //   // TODO: No se si hay ke kitar esto
+      //   return alert(
+      //     'Las apuestas son igual a los aciertos\nAlguien tiene ke pringar'
+      //   )
+      // }
       if (playerPoints !== cards) {
-        return alert(
-          'Las juagadas ganadas tienen que ser igual al numero de cartas repartidas\nTe has colao bacalao'
-        )
+        return this.$store.commit('showAlert', {
+          isVisible: true,
+          type: 'error',
+          title: 'Ojo!',
+          message:
+            'Las jugadas ganadas tienen que ser igual al numero de cartas repartidas. Te has colao bacalao'
+        })
       }
       this.$store.commit('nextRound')
     }

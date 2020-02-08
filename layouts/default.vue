@@ -1,15 +1,15 @@
 <template>
   <div id="app">
     Pocha!
+    <the-alert />
     <nuxt-child />
   </div>
 </template>
 
 <script>
+import TheAlert from '@/components/theAlert'
 export default {
-  data: () => ({
-    drawer: null
-  })
+  components: { TheAlert }
 }
 </script>
 

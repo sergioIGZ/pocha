@@ -1,0 +1,71 @@
+<template>
+  <div v-if="isVisible" class="root">
+    <div class="veil" @click="close" />
+    <div
+      :class="{
+        isError: type === 'error',
+        isInfo: type === 'info',
+        isSuccess: type === 'success'
+      }"
+      class="z-10 border px-4 py-3 rounded relative w-full"
+      role="alert"
+    >
+      <strong class="font-bold">{{ title }}</strong>
+      <span class="block sm:inline">{{ message }}</span>
+      <span
+        @click="close"
+        class="icon-cross absolute top-0 right-0 px-3 py-3 text-xs"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapState } from 'vuex'
+
+export default {
+  name: 'TheAlert',
+  computed: {
+    ...mapState({
+      isVisible: state => state.alert.isVisible,
+      type: state => state.alert.type,
+      title: state => state.alert.title,
+      message: state => state.alert.message
+    })
+  },
+  methods: {
+    close() {
+      this.$store.commit('closeAlert')
+    }
+  }
+}
+</script>
+
+<style scoped>
+.root {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+.isSuccess {
+  @apply bg-green-100 border-green-400 text-green-700;
+}
+.isError {
+  @apply bg-red-100 border-red-400 text-red-700;
+}
+.isInfo {
+  @apply bg-blue-100 border-blue-400 text-blue-700;
+}
+.veil {
+  @apply bg-gray-800;
+  height: 100vh;
+  width: 100%;
+  opacity: 0.7;
+  z-index: 1;
+  position: absolute;
+  top: -24px;
+}
+</style>

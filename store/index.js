@@ -1,12 +1,14 @@
-// import VuexPersistence from 'vuex-persist'
-
-// export const plugins = [VuexPersistence]
-
 export const state = () => ({
   players: [],
   currentGame: {
     players: [],
     round: 1
+  },
+  alert: {
+    isVisible: false,
+    type: null,
+    message: '',
+    title: ''
   }
 })
 export const getters = {
@@ -20,6 +22,12 @@ export const getters = {
   }
 }
 export const mutations = {
+  showAlert(state, config) {
+    state.alert = { ...config }
+  },
+  closeAlert(state) {
+    state.alert = { isVisible: false, title: '', message: '', type: null }
+  },
   addPlayer(state, playerName) {
     state.players.push(playerName)
   },
