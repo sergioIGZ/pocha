@@ -1,6 +1,6 @@
 <template>
   <div v-if="isVisible" class="root">
-    <div class="veil" @click="close" />
+    <div @click="close" class="veil" />
     <div
       :class="{
         isError: type === 'error',
