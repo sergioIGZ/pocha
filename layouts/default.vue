@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import TheAlert from '@/components/theAlert'
+import TheAlert from '@/components/theAlert/theAlert'
 export default {
   components: { TheAlert }
 }
