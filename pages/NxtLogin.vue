@@ -21,7 +21,7 @@ export default {
     doLogin() {
       axios
         .post(
-          'http://app.nextinit.com/b/demoSergio/login',
+          'https://app.nextinit.com/b/demoSergio/login',
           {
             email: this.email,
             pwd: this.password,
@@ -48,7 +48,7 @@ export default {
       // its a valid user, need to post a form
       // document.location.href = "https://app.nextinit.com" + p_data.redirect;
       let form =
-        '<form action="http://app.nextinit.com/b/demoSergio/login" method="POST">'
+        '<form action="https://app.nextinit.com/b/demoSergio/login" method="POST">'
       form += '<input type="hidden" name="email" value="' + this.email + '">'
       form += '<input type="hidden" name="pwd" value="' + this.password + '">'
       form += '<input type="hidden" name="forwardFrom" value="true">'
