@@ -1,6 +1,6 @@
 # contador-pocha
 
-> My pioneering Nuxt.js project
+> A simple counter for the _pocha_ (spanish card game)
 
 ## Build Setup
 
