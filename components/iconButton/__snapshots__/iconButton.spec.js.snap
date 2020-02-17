@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`iconButton Component Behaviour should be mounted with no problems 1`] = `<button class="bg-blue-500 hover:bg-blue-700"></button>`;

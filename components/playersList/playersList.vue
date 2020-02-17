@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import IconButton from './iconButton'
+import IconButton from '../iconButton/iconButton'
 export default {
   name: 'PlayersList',
   components: { IconButton },

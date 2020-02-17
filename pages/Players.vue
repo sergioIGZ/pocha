@@ -7,6 +7,7 @@
         id="playerName"
         @keypress.enter="addPlayer"
         v-model="playerName"
+        maxlength="15"
         placeholder="Ej: Jose"
       />
       <button
@@ -24,7 +25,7 @@
 </template>
 
 <script>
-import PlayersList from '../components/playersList'
+import PlayersList from '../components/playersList/playersList'
 export default {
   name: 'Players',
   components: { PlayersList },
