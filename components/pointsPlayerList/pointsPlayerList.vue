@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import PointsCounter from './pointsCounter'
+import PointsCounter from '../pointsCounter/pointsCounter'
 export default {
   name: 'PlayersList',
   components: { PointsCounter },
@@ -78,11 +78,14 @@ export default {
   color: #ee8888;
 }
 .left {
-  width: 25%;
+  width: 29%;
   text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .middle {
-  width: 65%;
+  width: 61%;
   display: flex;
   align-items: center;
 }

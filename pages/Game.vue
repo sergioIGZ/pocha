@@ -6,7 +6,7 @@
       <span>Carta/s: {{ cards }}</span>
     </div>
     <button v-if="!isGameStarted" @click="startGame">Empezar</button>
-    <button v-if="isGameStarted" @click="doNextRound">
+    <button v-if="isGameStarted" @click="validateRound">
       Siguiente Ronda >
     </button>
     <div class="middle">
@@ -45,8 +45,8 @@
 </template>
 
 <script>
-import PlayersList from '../components/playersList'
-import PointsPlayerList from '../components/pointsPlayerList'
+import PlayersList from '../components/playersList/playersList'
+import PointsPlayerList from '../components/pointsPlayerList/pointsPlayerList'
 export default {
   name: 'Game',
   components: { PlayersList, PointsPlayerList },
@@ -127,6 +127,10 @@ export default {
       }
 
       this.cards = cards
+      this.$store.commit('nextRound')
+    },
+    validateRound() {
+      const cards = this.cards
       const playerBets = this.gamePlayers.reduce(
         (acc, next) => acc + next.bet,
         0
@@ -159,7 +163,8 @@ export default {
             'Las jugadas ganadas tienen que ser igual al numero de cartas repartidas. Te has colao bacalao'
         })
       }
-      this.$store.commit('nextRound')
+
+      this.doNextRound()
     }
   }
 }
