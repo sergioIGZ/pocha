@@ -52,7 +52,6 @@ export default {
   components: { PlayersList, PointsPlayerList },
   data() {
     return {
-      cards: 1,
       showSelectPlayers: false
     }
   },
@@ -68,6 +67,37 @@ export default {
     },
     isGameStarted() {
       return this.$store.state.currentGame.round !== 0
+    },
+    cards() {
+      const numberOfPlayers = this.gamePlayers.length
+      const coefficient = Math.trunc(40 / numberOfPlayers)
+      const round = this.round
+      let cards = 0
+
+      if (
+        round <= numberOfPlayers ||
+        round > 2 * numberOfPlayers + 2 * (coefficient - 2)
+      ) {
+        cards = 1
+      } else if (
+        round > numberOfPlayers &&
+        round < numberOfPlayers + coefficient - 1
+      ) {
+        cards = round - numberOfPlayers + 1
+      } else if (
+        round >= numberOfPlayers + coefficient - 1 &&
+        round <= 2 * numberOfPlayers + coefficient - 2
+      ) {
+        cards = coefficient
+      } else if (
+        round >= numberOfPlayers + coefficient - 1 &&
+        round < 2 * numberOfPlayers + 2 * (coefficient - 2) + 1
+      ) {
+        cards = 2 * numberOfPlayers + coefficient - 2 + coefficient - round
+      } else {
+        cards = 9999999
+      }
+      return cards
     }
   },
   methods: {
@@ -97,36 +127,6 @@ export default {
       this.$store.commit('setPlayerPoints', { name, points })
     },
     doNextRound() {
-      const numberOfPlayers = this.gamePlayers.length
-      const coefficient = Math.trunc(40 / numberOfPlayers)
-      const round = this.round + 1
-      let cards = 0
-
-      if (
-        round <= numberOfPlayers ||
-        round > 2 * numberOfPlayers + 2 * (coefficient - 2)
-      ) {
-        cards = 1
-      } else if (
-        round > numberOfPlayers &&
-        round < numberOfPlayers + coefficient - 1
-      ) {
-        cards = round - numberOfPlayers + 1
-      } else if (
-        round >= numberOfPlayers + coefficient - 1 &&
-        round <= 2 * numberOfPlayers + coefficient - 2
-      ) {
-        cards = coefficient
-      } else if (
-        round >= numberOfPlayers + coefficient - 1 &&
-        round < 2 * numberOfPlayers + 2 * (coefficient - 2) + 1
-      ) {
-        cards = 2 * numberOfPlayers + coefficient - 2 + coefficient - round
-      } else {
-        cards = 9999999
-      }
-
-      this.cards = cards
       this.$store.commit('nextRound')
     },
     validateRound() {

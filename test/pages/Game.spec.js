@@ -70,22 +70,22 @@ describe('Game Page', () => {
           round | nextRound | players        | numberOfPlayers       | expectedCards
           ${1}  | ${2}      | ${fourPlayers} | ${fourPlayers.length} | ${1}
           ${3}  | ${4}      | ${fourPlayers} | ${fourPlayers.length} | ${1}
-          ${4}  | ${5}      | ${fourPlayers} | ${fourPlayers.length} | ${2}
-          ${11} | ${12}     | ${fourPlayers} | ${fourPlayers.length} | ${9}
-          ${12} | ${13}     | ${fourPlayers} | ${fourPlayers.length} | ${10}
-          ${15} | ${16}     | ${fourPlayers} | ${fourPlayers.length} | ${10}
-          ${16} | ${17}     | ${fourPlayers} | ${fourPlayers.length} | ${9}
-          ${23} | ${24}     | ${fourPlayers} | ${fourPlayers.length} | ${2}
-          ${24} | ${25}     | ${fourPlayers} | ${fourPlayers.length} | ${1}
+          ${5}  | ${6}      | ${fourPlayers} | ${fourPlayers.length} | ${2}
+          ${12} | ${13}     | ${fourPlayers} | ${fourPlayers.length} | ${9}
+          ${13} | ${14}     | ${fourPlayers} | ${fourPlayers.length} | ${10}
+          ${16} | ${17}     | ${fourPlayers} | ${fourPlayers.length} | ${10}
+          ${17} | ${18}     | ${fourPlayers} | ${fourPlayers.length} | ${9}
+          ${24} | ${26}     | ${fourPlayers} | ${fourPlayers.length} | ${2}
+          ${25} | ${26}     | ${fourPlayers} | ${fourPlayers.length} | ${1}
           ${1}  | ${2}      | ${tenPlayers}  | ${tenPlayers.length}  | ${1}
           ${9}  | ${10}     | ${tenPlayers}  | ${tenPlayers.length}  | ${1}
-          ${10} | ${11}     | ${tenPlayers}  | ${tenPlayers.length}  | ${2}
-          ${11} | ${12}     | ${tenPlayers}  | ${tenPlayers.length}  | ${3}
-          ${12} | ${13}     | ${tenPlayers}  | ${tenPlayers.length}  | ${4}
-          ${21} | ${22}     | ${tenPlayers}  | ${tenPlayers.length}  | ${4}
-          ${22} | ${23}     | ${tenPlayers}  | ${tenPlayers.length}  | ${3}
-          ${23} | ${24}     | ${tenPlayers}  | ${tenPlayers.length}  | ${2}
-          ${24} | ${25}     | ${tenPlayers}  | ${tenPlayers.length}  | ${1}
+          ${11} | ${12}     | ${tenPlayers}  | ${tenPlayers.length}  | ${2}
+          ${12} | ${13}     | ${tenPlayers}  | ${tenPlayers.length}  | ${3}
+          ${13} | ${14}     | ${tenPlayers}  | ${tenPlayers.length}  | ${4}
+          ${22} | ${23}     | ${tenPlayers}  | ${tenPlayers.length}  | ${4}
+          ${23} | ${24}     | ${tenPlayers}  | ${tenPlayers.length}  | ${3}
+          ${24} | ${25}     | ${tenPlayers}  | ${tenPlayers.length}  | ${2}
+          ${25} | ${26}     | ${tenPlayers}  | ${tenPlayers.length}  | ${1}
         `(
           'should set cards = $expectedCards when is the $round (passing to the $nextRound) round and we have $numberOfPlayers',
           ({ round, players, expectedCards }) => {

@@ -2,12 +2,12 @@
 
 exports[`Game Page Behaviour should be mounted with no problems 1`] = `
 <div>
-  <div><span>Ronda: 1</span> <span>Carta/s: 1</span></div>
+  <div><span>Ronda: 1</span> <span>Carta/s: 2</span></div>
   <!----> <button>
     Siguiente Ronda &gt;
   </button>
   <div class="middle">
-    <points-player-list-stub players="" maxpoints="1" showdelete="true" class="marked"></points-player-list-stub>
+    <points-player-list-stub players="" maxpoints="2" showdelete="true" class="marked"></points-player-list-stub>
   </div>
   <!---->
   <div class="bottom">
