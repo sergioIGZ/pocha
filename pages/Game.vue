@@ -6,9 +6,14 @@
       <span>Carta/s: {{ cards }}</span>
     </div>
     <button v-if="!isGameStarted" @click="startGame">Empezar</button>
-    <button v-if="isGameStarted" @click="validateRound">
-      Siguiente Ronda >
-    </button>
+    <template v-else>
+      <button v-show="round > 1" @click="previousRound">
+        <span class="icon-loop" />
+      </button>
+      <button @click="validateRound">
+        Siguiente Ronda >
+      </button>
+    </template>
     <div class="middle">
       <players-list
         v-if="!isGameStarted"
@@ -128,6 +133,17 @@ export default {
     },
     doNextRound() {
       this.$store.commit('nextRound')
+    },
+    previousRound() {
+      this.$store.commit('showAlert', {
+        isVisible: true,
+        type: 'info',
+        title: 'Ojo!',
+        message:
+          'Estás seguro ke kieres viajar en el tiempo a la ronda anterior? acaso alguien la ha cagado?',
+        yesNoButtons: true,
+        yesAction: () => this.$store.commit('resetRound')
+      })
     },
     validateRound() {
       const cards = this.cards

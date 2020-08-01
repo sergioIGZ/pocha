@@ -12,6 +12,10 @@
     >
       <strong class="font-bold">{{ title }}</strong>
       <span class="block sm:inline">{{ message }}</span>
+      <div v-if="yesNoButtons">
+        <button @click="onYesClick">Si</button>
+        <button @click="onNoClick">No</button>
+      </div>
       <span
         @click="close"
         class="icon-cross absolute top-0 right-0 px-3 py-3 text-xs"
@@ -30,12 +34,23 @@ export default {
       isVisible: state => state.alert.isVisible,
       type: state => state.alert.type,
       title: state => state.alert.title,
-      message: state => state.alert.message
+      message: state => state.alert.message,
+      yesNoButtons: state => state.alert.yesNoButtons,
+      yesAction: state => state.alert.yesAction,
+      noAction: state => state.alert.noAction
     })
   },
   methods: {
     close() {
       this.$store.commit('closeAlert')
+    },
+    onYesClick() {
+      if (this.yesAction) this.yesAction()
+      this.close()
+    },
+    onNoClick() {
+      if (this.noAction) this.noAction()
+      this.close()
     }
   }
 }

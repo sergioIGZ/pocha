@@ -1,28 +1,50 @@
 <template>
-  <ul v-show="players.length" class="players-list">
-    <li
-      v-for="(player, index) in players"
-      :key="index"
-      @click="onUserClick(player)"
-    >
-      <div class="left text-gray-700">
-        <span>{{ player.name }}</span>
+  <div>
+    <div class="flex relative w-full h-6">
+      <div
+        :style="{ left: `${totalBetsPosition}px` }"
+        :class="{ 'text-red-500': totalBets === maxPoints }"
+        class="absolute"
+      >
+        {{ totalBets }}
       </div>
-      <div class="middle">
-        <points-counter
-          @change="setPlayerBet(player.name, $event)"
-          :points="player.bet"
-        />
-        <points-counter
-          @change="setPlayerPoints(player.name, $event)"
-          :points="player.points"
-        />
+      <div
+        :style="{ left: `${totalPointsPosition}px` }"
+        :class="{ 'text-red-500': totalPoints !== maxPoints }"
+        class="absolute rounded-full"
+      >
+        {{ totalPoints }}
       </div>
-      <div class="right">
-        <span :class="{ isRed: !player.hasWon }">{{ player.totalPoints }}</span>
-      </div>
-    </li>
-  </ul>
+    </div>
+    <ul v-show="players.length" class="players-list">
+      <li
+        v-for="(player, index) in players"
+        :key="index"
+        @click="onUserClick(player)"
+      >
+        <div class="left text-gray-700">
+          <span>{{ player.name }}</span>
+        </div>
+        <div class="middle">
+          <points-counter
+            :ref="`leftCounter${index}`"
+            @change="setPlayerBet(player.name, $event)"
+            :points="player.bet"
+          />
+          <points-counter
+            :ref="`rightCounter${index}`"
+            @change="setPlayerPoints(player.name, $event)"
+            :points="player.points"
+          />
+        </div>
+        <div class="right">
+          <span :class="{ isRed: !player.hasWon }">{{
+            player.totalPoints
+          }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -34,6 +56,37 @@ export default {
     players: { type: Array, required: true },
     maxPoints: { type: Number, required: true },
     showDelete: { type: Boolean, required: false, default: true }
+  },
+  data() {
+    return { totalBetsPosition: 0, totalPointsPosition: 0 }
+  },
+  computed: {
+    totalBets() {
+      return this.players.reduce((acc, player) => {
+        return acc + player.bet
+      }, 0)
+    },
+    totalPoints() {
+      return this.players.reduce((acc, player) => {
+        return acc + player.points
+      }, 0)
+    }
+  },
+  mounted() {
+    if (this.$refs.leftCounter0) {
+      const {
+        x,
+        width
+      } = this.$refs.leftCounter0[0].$el.getBoundingClientRect()
+      this.totalBetsPosition = x + width / 2 - 4
+    }
+    if (this.$refs.rightCounter0) {
+      const {
+        x,
+        width
+      } = this.$refs.rightCounter0[0].$el.getBoundingClientRect()
+      this.totalPointsPosition = x + width / 2 - 4
+    }
   },
   methods: {
     onUserClick(playerName) {

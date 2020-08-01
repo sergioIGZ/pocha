@@ -2,8 +2,7 @@
 
 exports[`Game Page Behaviour should be mounted with no problems 1`] = `
 <div>
-  <div><span>Ronda: 1</span> <span>Carta/s: 2</span></div>
-  <!----> <button>
+  <div><span>Ronda: 1</span> <span>Carta/s: 2</span></div> <button style="display: none;"><span class="icon-loop"></span></button> <button>
     Siguiente Ronda &gt;
   </button>
   <div class="middle">

@@ -4,11 +4,15 @@ export const state = () => ({
     players: [],
     round: 1
   },
+  previousRound: {},
   alert: {
     isVisible: false,
     type: null,
     message: '',
-    title: ''
+    title: '',
+    yesNoButtons: false,
+    yesAction: null,
+    noAction: null
   }
 })
 export const getters = {
@@ -23,7 +27,7 @@ export const getters = {
 }
 export const mutations = {
   showAlert(state, config) {
-    state.alert = { ...config }
+    state.alert = config
   },
   closeAlert(state) {
     state.alert = { isVisible: false, title: '', message: '', type: null }
@@ -66,9 +70,12 @@ export const mutations = {
     )
   },
   nextRound(state) {
+    state.previousRound = JSON.parse(
+      JSON.stringify(Object.freeze(state.currentGame))
+    )
     state.currentGame.players = state.currentGame.players.map(player => {
       const { bet, points, totalPoints } = player
-      let _totalPoints = 0
+      let _totalPoints
       if (bet !== points) {
         _totalPoints = Math.abs(bet - points) * -5
       } else {
@@ -83,5 +90,8 @@ export const mutations = {
       }
     })
     state.currentGame.round = state.currentGame.round + 1
+  },
+  resetRound(state) {
+    state.currentGame = JSON.parse(JSON.stringify(state.previousRound))
   }
 }
