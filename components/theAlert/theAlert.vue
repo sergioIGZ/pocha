@@ -76,11 +76,11 @@ export default {
 }
 .veil {
   @apply bg-gray-800;
-  height: 100vh;
+  height: 110vh;
   width: 100%;
   opacity: 0.7;
   z-index: 1;
   position: absolute;
-  top: -24px;
+  top: -50px;
 }
 </style>

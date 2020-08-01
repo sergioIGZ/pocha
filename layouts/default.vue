@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    Pocha!
+    <div class="text-purple-700 text-xl font-extrabold p-2">
+      Pocha!
+    </div>
     <the-alert />
     <nuxt-child />
   </div>

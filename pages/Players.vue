@@ -1,11 +1,13 @@
 <template>
   <div>
     <players-list @on-delete-player="deletePlayer" :players="players" />
-    <div class="px-2">
+    <div class="p-2">
       <label for="playerName">Nombre</label>
       <input
         id="playerName"
         @keypress.enter="addPlayer"
+        @focus="isTextFieldFocused = true"
+        @blur="isTextFieldFocused = false"
         v-model="playerName"
         maxlength="15"
         placeholder="Ej: Jose"
@@ -18,7 +20,7 @@
         Añadir jugador
       </button>
     </div>
-    <div class="bottom py-4">
+    <div v-show="!isTextFieldFocused" class="bottom py-4">
       <button @click="$router.push('/')">Salir</button>
     </div>
   </div>
@@ -31,7 +33,8 @@ export default {
   components: { PlayersList },
   data() {
     return {
-      playerName: ''
+      playerName: '',
+      isTextFieldFocused: false
     }
   },
   computed: {

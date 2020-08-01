@@ -3,10 +3,15 @@
     <div class="flex relative w-full h-6">
       <div
         :style="{ left: `${totalBetsPosition}px` }"
-        :class="{ 'text-red-500': totalBets === maxPoints }"
+        :class="{
+          'text-red-500 font-bold': totalBets === maxPoints
+        }"
         class="absolute"
       >
-        {{ totalBets }}
+        <span class="absolute">{{ totalBets }}</span>
+        <span v-if="totalBets === maxPoints" class="absolute animate-ping">
+          {{ totalBets }}
+        </span>
       </div>
       <div
         :style="{ left: `${totalPointsPosition}px` }"
@@ -23,7 +28,9 @@
         @click="onUserClick(player)"
       >
         <div class="left text-gray-700">
-          <span>{{ player.name }}</span>
+          <span :class="{ 'font-bold': player.totalPoints === bestPoints }">
+            {{ player.name }}
+          </span>
         </div>
         <div class="middle">
           <points-counter
@@ -69,6 +76,14 @@ export default {
     totalPoints() {
       return this.players.reduce((acc, player) => {
         return acc + player.points
+      }, 0)
+    },
+    bestPoints() {
+      return this.players.reduce((acc, player) => {
+        if (acc < player.totalPoints) {
+          acc = player.totalPoints
+        }
+        return acc
       }, 0)
     }
   },

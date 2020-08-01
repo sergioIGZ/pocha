@@ -7,7 +7,7 @@
     </div>
     <button v-if="!isGameStarted" @click="startGame">Empezar</button>
     <template v-else>
-      <button v-show="round > 1" @click="previousRound">
+      <button v-show="round > 1" @click="previousRound" class="bg-yellow-500">
         <span class="icon-loop" />
       </button>
       <button @click="validateRound">
@@ -44,7 +44,7 @@
       >
         + Jugador
       </button>
-      <button @click="$router.push('/')">Salir</button>
+      <button @click="$router.push('/')" class="bg-red-500">Salir</button>
     </div>
   </div>
 </template>
