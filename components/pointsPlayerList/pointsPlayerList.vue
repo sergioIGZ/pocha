@@ -27,10 +27,19 @@
         :key="index"
         @click="onUserClick(player)"
       >
-        <div class="left text-gray-700">
-          <span :class="{ 'font-bold': player.totalPoints === bestPoints }">
-            {{ player.name }}
-          </span>
+        <div class="flex left text-gray-700 items-center">
+          <div
+            :class="{
+              'icon-trophy text-yellow-500':
+                player.totalPoints === bestPoints.first,
+              'icon-trophy text-gray-500':
+                player.totalPoints === bestPoints.second,
+              'icon-trophy text-orange-600':
+                player.totalPoints === bestPoints.third
+            }"
+            class="pr-1"
+          />
+          <div class="truncate">{{ player.name }}</div>
         </div>
         <div class="middle">
           <points-counter
@@ -44,10 +53,14 @@
             :points="player.points"
           />
         </div>
-        <div class="right">
-          <span :class="{ isRed: !player.hasWon }">{{
-            player.totalPoints
-          }}</span>
+        <div class="right flex items-center justify-end">
+          <span :class="{ isRed: !player.hasWon }">
+            {{ player.totalPoints }}
+          </span>
+          <div class="flex flex-col text-xs pl-1">
+            <div class="text-green-500">{{ player.roundsWon }}</div>
+            <div class="text-red-500">{{ player.roundsLost }}</div>
+          </div>
         </div>
       </li>
     </ul>
@@ -79,12 +92,22 @@ export default {
       }, 0)
     },
     bestPoints() {
-      return this.players.reduce((acc, player) => {
-        if (acc < player.totalPoints) {
-          acc = player.totalPoints
-        }
-        return acc
-      }, 0)
+      return this.players.reduce(
+        (acc, player) => {
+          if (player.totalPoints > acc.first) {
+            acc.third = acc.second
+            acc.second = acc.first
+            acc.first = player.totalPoints
+          } else if (player.totalPoints > acc.second) {
+            acc.third = acc.second
+            acc.second = player.totalPoints
+          } else if (player.totalPoints > acc.third) {
+            acc.third = player.totalPoints
+          }
+          return acc
+        },
+        { first: -100, second: -100, third: -100 }
+      )
     }
   },
   mounted() {
@@ -136,8 +159,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px;
   border-bottom: 1px solid #dddddd;
+  @apply py-2 px-1;
 }
 .players-list :last-child {
   border-bottom: none;

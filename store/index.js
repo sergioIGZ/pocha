@@ -81,12 +81,15 @@ export const mutations = {
       } else {
         _totalPoints = points * 5 + 10
       }
+      const hasWon = _totalPoints > 0
       return {
         ...player,
         points: 0,
         bet: 0,
         totalPoints: _totalPoints + totalPoints,
-        hasWon: _totalPoints > 0
+        hasWon,
+        roundsWon: (player.roundsWon || 0) + (hasWon ? 1 : 0),
+        roundsLost: (player.roundsLost || 0) + (!hasWon ? 1 : 0)
       }
     })
     state.currentGame.round = state.currentGame.round + 1
