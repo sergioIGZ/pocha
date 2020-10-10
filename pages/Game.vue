@@ -7,12 +7,22 @@
     </div>
     <button v-if="!isGameStarted" @click="startGame">Empezar</button>
     <template v-else>
-      <button v-show="round > 1" @click="previousRound" class="bg-yellow-500">
-        <span class="icon-loop" />
-      </button>
-      <button @click="validateRound">
-        Siguiente Ronda >
-      </button>
+      <div class="flex justify-center">
+        <button v-show="round > 1" @click="previousRound" class="bg-yellow-500">
+          <span class="icon-loop" />
+        </button>
+        <button @click="validateRound">
+          Siguiente Ronda >
+        </button>
+        <button
+          v-if="!isEditing"
+          v-show="round > 1"
+          @click="isEditing = true"
+          class="bg-green-500"
+        >
+          <span class="icon-pencil" />
+        </button>
+      </div>
     </template>
     <div class="middle">
       <players-list
@@ -24,12 +34,19 @@
       />
       <points-player-list
         v-else
+        :is-editing="isEditing"
         :players="gamePlayers"
         :max-points="cards"
         @set-player-bet="setPlayerBet"
         @set-player-points="setPlayerPoints"
+        @cancel-edit="isEditing = false"
+        @save-edit="saveEditPoints"
         class="marked"
       />
+      <div v-if="showNotes" class="flex flex-col p-2">
+        <label for="notes">Notas</label>
+        <textarea id="notes" v-model="notes" rows="3" />
+      </div>
     </div>
     <players-list
       v-if="showSelectPlayers"
@@ -45,6 +62,7 @@
         + Jugador
       </button>
       <button @click="$router.push('/')" class="bg-red-500">Salir</button>
+      <button @click="toggleNotes" class="bg-green-500">Notas</button>
     </div>
   </div>
 </template>
@@ -57,7 +75,10 @@ export default {
   components: { PlayersList, PointsPlayerList },
   data() {
     return {
-      showSelectPlayers: false
+      showSelectPlayers: false,
+      isEditing: false,
+      showNotes: false,
+      notes: ''
     }
   },
   computed: {
@@ -164,12 +185,6 @@ export default {
             'Las apuestas son igual a las cartas. Alguien tiene ke pringar'
         })
       }
-      // if (playerBets === playerPoints) {
-      //   // TODO: No se si hay ke kitar esto
-      //   return alert(
-      //     'Las apuestas son igual a los aciertos\nAlguien tiene ke pringar'
-      //   )
-      // }
       if (playerPoints !== cards) {
         return this.$store.commit('showAlert', {
           isVisible: true,
@@ -181,6 +196,13 @@ export default {
       }
 
       this.doNextRound()
+    },
+    toggleNotes() {
+      this.showNotes = !this.showNotes
+    },
+    saveEditPoints(playerPoints) {
+      this.$store.commit('setPlayerTotalPoints', playerPoints)
+      this.isEditing = false
     }
   }
 }

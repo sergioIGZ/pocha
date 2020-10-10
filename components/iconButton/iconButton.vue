@@ -2,17 +2,13 @@
   <button
     @click="$emit('click', $event)"
     :class="`bg-${color}-500 hover:bg-${color}-700`"
+    class="focus:shadow-outline focus:outline-none"
   >
     <slot />
   </button>
 </template>
 
 <script>
-// `bg-${color}-500 hover:bg-${color}-700 text-white font-bold py-2 px-4 rounded-full`
-// :class="{
-// 'bg-red-500': color === 'red',
-//   'text-white font-bold py-2 px-4 rounded-full': true
-// }"
 export default {
   name: 'IconButton',
   props: {

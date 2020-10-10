@@ -69,6 +69,14 @@ export const mutations = {
       player.name === name ? { ...player, points } : player
     )
   },
+  setPlayerTotalPoints(state, playerPoints) {
+    state.currentGame.players = state.currentGame.players.map(
+      (player, index) => ({
+        ...player,
+        totalPoints: Number(playerPoints[index])
+      })
+    )
+  },
   nextRound(state) {
     state.previousRound = JSON.parse(
       JSON.stringify(Object.freeze(state.currentGame))

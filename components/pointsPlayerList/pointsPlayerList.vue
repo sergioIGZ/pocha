@@ -21,6 +21,14 @@
         {{ totalPoints }}
       </div>
     </div>
+    <div v-if="isEditing">
+      <button @click="$emit('cancel-edit')" class="bg-red-500">
+        <span class="icon-cross" />
+      </button>
+      <button @click="$emit('save-edit', playerPoints)" class="bg-green-500">
+        <span class="icon-checkmark" />
+      </button>
+    </div>
     <ul v-show="players.length" class="players-list">
       <li
         v-for="(player, index) in players"
@@ -54,7 +62,8 @@
           />
         </div>
         <div class="right flex items-center justify-end">
-          <span :class="{ isRed: !player.hasWon }">
+          <input v-if="isEditing" v-model="playerPoints[index]" />
+          <span v-else :class="{ isRed: !player.hasWon }">
             {{ player.totalPoints }}
           </span>
           <div class="flex flex-col text-xs pl-1">
@@ -75,10 +84,15 @@ export default {
   props: {
     players: { type: Array, required: true },
     maxPoints: { type: Number, required: true },
-    showDelete: { type: Boolean, required: false, default: true }
+    showDelete: { type: Boolean, required: false, default: true },
+    isEditing: { type: Boolean, required: false, default: false }
   },
   data() {
-    return { totalBetsPosition: 0, totalPointsPosition: 0 }
+    return {
+      totalBetsPosition: 0,
+      totalPointsPosition: 0,
+      playerPoints: this.players.map(player => player.totalPoints)
+    }
   },
   computed: {
     totalBets() {
@@ -108,6 +122,12 @@ export default {
         },
         { first: -100, second: -100, third: -100 }
       )
+    }
+  },
+  watch: {
+    isEditing(newVal) {
+      if (newVal)
+        this.playerPoints = this.players.map(player => player.totalPoints)
     }
   },
   mounted() {
@@ -176,12 +196,12 @@ export default {
   white-space: nowrap;
 }
 .middle {
-  width: 61%;
+  width: 55%;
   display: flex;
   align-items: center;
 }
 .right {
-  width: 10%;
+  width: 16%;
   text-align: right;
 }
 </style>

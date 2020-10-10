@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="flex flex-col justify-center py-8 px-16">
     <button @click="setNewGame">Nueva partida</button>
     <button @click="$router.push('/players')">Jugadores</button>
     <button @click="$router.push('/game')">Continuar partida</button>
@@ -31,11 +31,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem 4rem;
-}
-</style>
+<style scoped></style>
