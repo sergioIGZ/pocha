@@ -2,14 +2,16 @@
 
 exports[`Game Page Behaviour should be mounted with no problems 1`] = `
 <div>
-  <div><span>Ronda: 1</span> <span>Carta/s: 2</span></div> <button style="display: none;"><span class="icon-loop"></span></button> <button>
-    Siguiente Ronda &gt;
-  </button>
+  <div><span>Ronda: 1</span> <span>Carta/s: 2</span></div>
+  <div class="flex justify-center"><button class="bg-yellow-500" style="display: none;"><span class="icon-loop"></span></button> <button>
+      Siguiente Ronda &gt;
+    </button> <button class="bg-green-500" style="display: none;"><span class="icon-pencil"></span></button></div>
   <div class="middle">
     <points-player-list-stub players="" maxpoints="2" showdelete="true" class="marked"></points-player-list-stub>
+    <!---->
   </div>
   <!---->
   <div class="bottom">
-    <!----> <button>Salir</button></div>
+    <!----> <button class="bg-red-500">Salir</button> <button class="bg-green-500">Notas</button></div>
 </div>
 `;

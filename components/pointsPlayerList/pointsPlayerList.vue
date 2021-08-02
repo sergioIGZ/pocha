@@ -106,21 +106,20 @@ export default {
       }, 0)
     },
     bestPoints() {
-      return this.players.reduce(
+      const sortedList = [...this.players]
+      sortedList.sort(({ totalPoints: a }, { totalPoints: b }) => b - a)
+      return sortedList.reduce(
         (acc, player) => {
-          if (player.totalPoints > acc.first) {
-            acc.third = acc.second
-            acc.second = acc.first
+          if (player.totalPoints >= acc.first) {
             acc.first = player.totalPoints
-          } else if (player.totalPoints > acc.second) {
-            acc.third = acc.second
+          } else if (player.totalPoints >= acc.second) {
             acc.second = player.totalPoints
-          } else if (player.totalPoints > acc.third) {
+          } else if (player.totalPoints >= acc.third) {
             acc.third = player.totalPoints
           }
           return acc
         },
-        { first: -100, second: -100, third: -100 }
+        { first: -1000, second: -1000, third: -1000 }
       )
     }
   },
