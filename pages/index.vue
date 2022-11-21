@@ -3,7 +3,7 @@
     <button @click="setNewGame">Nueva partida</button>
     <button @click="$router.push('/players')">Jugadores</button>
     <button @click="$router.push('/game')">Continuar partida</button>
-    <!--    <button>Partidas anteriores</button>-->
+    <button @click="$router.push('/partidas')">Partidas anteriores</button>
     <!--    <button>About</button>-->
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
   name: 'Home',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'home'
     }
   },
   methods: {

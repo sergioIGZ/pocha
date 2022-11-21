@@ -47,7 +47,7 @@ export default {
       if (this.players.includes(this.playerName)) {
         return alert(`Ke ${this.playerName} ya existe MELOOOON!`)
       }
-      this.$store.commit('addPlayer', this.playerName)
+      this.$store.commit('addPlayer', this.playerName.trim())
       this.playerName = ''
     },
     deletePlayer(playerName) {

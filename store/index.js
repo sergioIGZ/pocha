@@ -1,3 +1,6 @@
+import { format } from 'date-fns'
+import axios from 'axios'
+
 export const state = () => ({
   players: [],
   currentGame: {
@@ -25,6 +28,55 @@ export const getters = {
     )
   }
 }
+export const actions = {
+  saveGame: async ({ state, commit }) => {
+    const players = state.currentGame.players
+    const playerNames = players
+      .map(player => player.name.trim())
+      .join()
+      .replace(/,/g, '-')
+    const gameId = format(new Date(), 'yyyyMMddHH') + playerNames
+
+    const pass = prompt('contraseña')
+    if (pass === 'kami') {
+      const response = await axios.post('/api/game', {
+        gameId,
+        pointsChart: players
+      })
+      if (response.data.success === false && response.data.message) {
+        commit('showAlert', {
+          isVisible: true,
+          type: 'error',
+          title: 'Y lo sabes... ',
+          message:
+            'Te lo he dicho tronco, ke ya has guardao esta partida!!  ¬_¬'
+        })
+      } else {
+        commit('showAlert', {
+          isVisible: true,
+          type: 'success',
+          title: 'Todo bien, todo correcto',
+          message: 'Partida guardada correctamente, no le des mas al botoncito'
+        })
+      }
+      axios
+        .get('/api/game')
+        .then(r => console.log('r get', r))
+        .catch(err => console.log('error get', err))
+    } else {
+      setTimeout(() => {
+        commit('showAlert', {
+          isVisible: true,
+          type: 'error',
+          title: 'NOP',
+          message:
+            'Contraseña incorrecta. Pista: nombre del creador de esta cutre-web (en minúsculas)'
+        })
+      }, 10)
+    }
+  }
+}
+
 export const mutations = {
   showAlert(state, config) {
     state.alert = config

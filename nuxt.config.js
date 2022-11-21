@@ -1,3 +1,5 @@
+import serveStatic from 'serve-static'
+
 export default {
   mode: 'universal',
   /*
@@ -57,7 +59,8 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '~/modules/mongodb-setup.js'
   ],
   /*
    ** Axios module configuration
@@ -73,6 +76,12 @@ export default {
      */
     extend(config, ctx) {}
   },
+  serverMiddleware: [
+    // Will register redirect-ssl npm package
+    // 'redirect-ssl',
+    '~/server-middleware/logger',
+    { path: '/api', handler: '~/server-middleware/rest.js' }
+  ],
   pwa: {
     icon: {
       iconSrc: '/assets/baraja.png',

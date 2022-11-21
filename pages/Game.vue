@@ -2,8 +2,14 @@
   <div>
     <span v-if="!isGameStarted">Nueva partida</span>
     <div v-else>
-      <span>Ronda: {{ $store.state.currentGame.round }}</span>
-      <span>Carta/s: {{ cards }}</span>
+      <div class="flex justify-center">
+        <div>Ronda:</div>
+        <div class="font-bold">{{ $store.state.currentGame.round }}</div>
+      </div>
+      <div class="flex justify-center">
+        Carta/s:
+        <div class="font-bold">{{ cards }}</div>
+      </div>
     </div>
     <button v-if="!isGameStarted" @click="startGame">Empezar</button>
     <template v-else>
@@ -62,6 +68,7 @@
         + Jugador
       </button>
       <button @click="$router.push('/')" class="bg-red-500">Salir</button>
+      <button @click="saveGame" class="bg-green-500">Guardar</button>
       <button @click="toggleNotes" class="bg-green-500">Notas</button>
     </div>
   </div>
@@ -203,6 +210,17 @@ export default {
     saveEditPoints(playerPoints) {
       this.$store.commit('setPlayerTotalPoints', playerPoints)
       this.isEditing = false
+    },
+    saveGame() {
+      this.$store.commit('showAlert', {
+        isVisible: true,
+        type: 'info',
+        title: 'Seguro??',
+        message:
+          'Estás seguro de ke kieres guardar la puntuación? asegurate de ke no la hayas guardado antes pa ke no se repita',
+        yesNoButtons: true,
+        yesAction: () => this.$store.dispatch('saveGame')
+      })
     }
   }
 }
